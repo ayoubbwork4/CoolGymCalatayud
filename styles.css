@@ -1,113 +1,226 @@
-/* RESET & BASE */
+/* =========================================
+   RESET & BASE
+   ========================================= */
 *, *::before, *::after {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Elimina el flash azul al tocar en móviles */
 }
 
 body {
-    /* La fuente Inter para textos largos es más legible */
     font-family: 'Inter', sans-serif;
     background-color: #000;
-    overflow-x: hidden; /* Evita scroll horizontal */
+    overflow-x: hidden;
+    /* Evita el efecto rebote en iOS para sentirlo como una App nativa */
+    overscroll-behavior-y: none; 
 }
 
-/* FUENTES */
-/* 'Teko' se usa para títulos grandes y botones */
+/* =========================================
+   TIPOGRAFÍA Y EFECTOS
+   ========================================= */
 .font-display {
     font-family: 'Teko', sans-serif;
 }
 
-/* EFECTOS VISUALES */
-/* Efecto de texto neón para el logo */
+/* Efecto Neón Rojo Intenso */
 .neon-text {
     color: #fff;
     text-shadow: 
-        0 0 5px #fff,
-        0 0 10px #fff,
-        0 0 20px #dc2626,
-        0 0 40px #dc2626,
-        0 0 60px #dc2626;
+        0 0 5px rgba(255, 255, 255, 0.5),
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 15px #dc2626,
+        0 0 30px #dc2626,
+        0 0 45px #dc2626;
 }
 
-/* ANIMACIONES */
-@keyframes slideInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* =========================================
+   COMPONENTES
+   ========================================= */
 
-.animate-slide-in {
-    animation: slideInDown 0.8s ease-out forwards;
-}
-
-/* COMPONENTES */
-
-/* Botones de Categoría */
+/* --- Botones de Categoría --- */
 .cat-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #0f0f0f;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(5px); /* Efecto cristal */
     border: 1px solid #333;
-    color: #888;
+    color: #9ca3af;
     font-family: 'Teko', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     padding: 1rem 0.5rem;
     border-radius: 0.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
     overflow: hidden;
+    /* Para móvil: evita que se seleccione el texto al pulsar mucho */
+    user-select: none; 
 }
 
 .cat-btn ion-icon {
-    font-size: 1.2em;
+    font-size: 1.1em;
+    transition: transform 0.2s;
 }
 
-.cat-btn:hover {
-    background: #1a1a1a;
-    color: white;
-    border-color: #666;
-    transform: translateY(-2px);
+/* Estado Hover (Solo PC) */
+@media (hover: hover) {
+    .cat-btn:hover {
+        background: #222;
+        color: white;
+        border-color: #666;
+        transform: translateY(-2px);
+    }
 }
 
+/* Estado Activo (Seleccionado) */
 .cat-btn.active {
-    background: #dc2626; /* Rojo Gym */
+    background: #dc2626;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
     color: white;
-    border-color: #ef4444;
-    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
-    font-weight: 600;
+    border-color: #ff4d4d;
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.5);
+    font-weight: 500;
+    transform: scale(1.02);
 }
 
-/* Tarjetas de Ejercicios */
-.exercise-card {
-    /* El estilo base se maneja con Tailwind en el JS, aquí añadimos los detalles finos */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.cat-btn.active ion-icon {
+    transform: scale(1.2);
 }
 
-.exercise-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.15), 0 10px 10px -5px rgba(220, 38, 38, 0.1);
+/* --- Buscador (Input) --- */
+#searchInput:focus {
     border-color: #dc2626;
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
 }
 
-/* Scrollbar Personalizado (Estilo Dark Mode) */
+/* --- Tarjetas de Ejercicios --- */
+.exercise-card {
+    /* Optimización de rendimiento */
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Efecto Hover solo en PC para no molestar en táctil */
+@media (hover: hover) {
+    .exercise-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 30px -10px rgba(220, 38, 38, 0.25);
+        border-color: #dc2626;
+        z-index: 10;
+    }
+}
+
+/* =========================================
+   MODAL Y SCROLLBARS
+   ========================================= */
+
+/* Scrollbar General */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
 ::-webkit-scrollbar-track {
-    background: #000; 
+    background: #050505; 
 }
 ::-webkit-scrollbar-thumb {
     background: #333; 
-    border-radius: 4px;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #dc2626; 
 }
 
-/* Utilidad para el modal */
+/* Scrollbar interno del Modal (Texto) */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+/* Bloqueo de scroll body al abrir modal */
 .modal-open {
     overflow: hidden;
+    padding-right: 6px; /* Evita el salto visual al ocultar scrollbar */
+}
+
+/* =========================================
+   ANIMACIONES
+   ========================================= */
+
+/* Entrada suave de elementos */
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+    animation: slideInDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Animación de entrada del Modal (Desde abajo hacia el centro) */
+@keyframes modalUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(50px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+.animate-modal-up {
+    animation: modalUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* =========================================
+   RESPONSIVE / VERSIÓN MÓVIL CHULA
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* Ajustes generales de texto */
+    h1 {
+        font-size: 2.5rem !important; /* The Cool Gym más pequeño */
+    }
+    
+    /* El buscador se hace más compacto */
+    #searchInput {
+        font-size: 1.2rem; 
+        padding: 1rem;
+    }
+
+    /* Ajuste de la rejilla de botones */
+    .cat-btn {
+        font-size: 1.2rem; /* Texto más pequeño para que quepa */
+        padding: 0.8rem 0.4rem;
+    }
+    
+    .cat-btn ion-icon {
+        font-size: 1rem;
+    }
+
+    /* Modal en móvil: Ocupa casi toda la pantalla */
+    #exerciseModal .relative {
+        max-height: 95vh;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    /* Video aspect ratio fix en móvil */
+    #exerciseModal iframe {
+        min-height: 250px;
+    }
+
+    /* Ocultar scrollbar visualmente en rejilla horizontal si la hubiera, 
+       pero permitir funcionalidad */
+    .custom-scrollbar {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE */
+    }
+    .custom-scrollbar::-webkit-scrollbar { 
+        display: none; /* Chrome/Safari */
+    }
 }
