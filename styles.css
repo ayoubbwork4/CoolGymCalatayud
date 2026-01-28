@@ -1,0 +1,113 @@
+/* RESET & BASE */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    /* La fuente Inter para textos largos es más legible */
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+/* FUENTES */
+/* 'Teko' se usa para títulos grandes y botones */
+.font-display {
+    font-family: 'Teko', sans-serif;
+}
+
+/* EFECTOS VISUALES */
+/* Efecto de texto neón para el logo */
+.neon-text {
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #dc2626,
+        0 0 40px #dc2626,
+        0 0 60px #dc2626;
+}
+
+/* ANIMACIONES */
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+    animation: slideInDown 0.8s ease-out forwards;
+}
+
+/* COMPONENTES */
+
+/* Botones de Categoría */
+.cat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0f0f0f;
+    border: 1px solid #333;
+    color: #888;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.4rem;
+    padding: 1rem 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-btn ion-icon {
+    font-size: 1.2em;
+}
+
+.cat-btn:hover {
+    background: #1a1a1a;
+    color: white;
+    border-color: #666;
+    transform: translateY(-2px);
+}
+
+.cat-btn.active {
+    background: #dc2626; /* Rojo Gym */
+    color: white;
+    border-color: #ef4444;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+    font-weight: 600;
+}
+
+/* Tarjetas de Ejercicios */
+.exercise-card {
+    /* El estilo base se maneja con Tailwind en el JS, aquí añadimos los detalles finos */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.exercise-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.15), 0 10px 10px -5px rgba(220, 38, 38, 0.1);
+    border-color: #dc2626;
+}
+
+/* Scrollbar Personalizado (Estilo Dark Mode) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #000; 
+}
+::-webkit-scrollbar-thumb {
+    background: #333; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #dc2626; 
+}
+
+/* Utilidad para el modal */
+.modal-open {
+    overflow: hidden;
+}
