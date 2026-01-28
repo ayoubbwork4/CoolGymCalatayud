@@ -1,6 +1,6 @@
 'use strict';
 
-// --- BASE DE DATOS DE EJERCICIOS (BÁSICOS Y FUNDAMENTALES) ---
+// --- BASE DE DATOS DE EJERCICIOS ---
 const exerciseData = [
     // --- PECHO ---
     {
@@ -8,6 +8,7 @@ const exerciseData = [
         name: "Press de Banca con Barra",
         category: "pecho",
         videoId: "rT7DgCr-3pg", 
+        fileName: "pressbancabarra.gif", // Archivo real
         variants: ["Press con Mancuernas", "Flexiones con Lastre"]
     },
     {
@@ -15,14 +16,16 @@ const exerciseData = [
         name: "Press Inclinado Mancuernas",
         category: "pecho",
         videoId: "0G2_XV7-A4s", 
+        fileName: "pressinclinadomanc.jpg", // Archivo real
         variants: ["Press Inclinado Barra", "Aperturas Inclinadas"]
     },
     {
         id: "pecho_3",
-        name: "Cruce de Poleas",
+        name: "Aperturas (Mancuernas)",
         category: "pecho",
         videoId: "taI4XduLpTk",
-        variants: ["Aperturas en Máquina (Pec Deck)", "Fondos"]
+        fileName: "Apertura mancuernas.gif", // Archivo real
+        variants: ["Aperturas en Máquina (Pec Deck)", "Cruce de Poleas"]
     },
     {
         id: "pecho_4",
@@ -36,6 +39,7 @@ const exerciseData = [
         name: "Flexiones (Push Ups)",
         category: "pecho",
         videoId: "IODxDxX7oi4",
+        fileName: "pushup.gif", // Archivo real
         variants: ["Press Banca", "Flexiones Inclinadas"]
     },
 
@@ -45,6 +49,7 @@ const exerciseData = [
         name: "Jalón al Pecho",
         category: "espalda",
         videoId: "CAwf7n6Luuc",
+        fileName: "jalonpechp.gif", 
         variants: ["Dominadas", "Jalón Supino"]
     },
     {
@@ -52,6 +57,7 @@ const exerciseData = [
         name: "Remo con Barra",
         category: "espalda",
         videoId: "G8l_8chR5BE",
+        fileName: "RemoconBarra.gif", 
         variants: ["Remo Mancuerna", "Remo en Polea Baja"]
     },
     {
@@ -59,6 +65,7 @@ const exerciseData = [
         name: "Dominadas",
         category: "espalda",
         videoId: "eGo4IYlbE5g",
+        fileName: "Dominadas.gif", 
         variants: ["Jalón al Pecho", "Dominadas Asistidas"]
     },
     {
@@ -66,6 +73,7 @@ const exerciseData = [
         name: "Peso Muerto",
         category: "espalda",
         videoId: "op9kVnSso6Q",
+        fileName: "pesomuerto.gif", 
         variants: ["Peso Muerto Rumano", "Hip Thrust"]
     },
     {
@@ -220,7 +228,7 @@ const exerciseData = [
     }
 ];
 
-// --- IMÁGENES DE RESPALDO (PLACEHOLDERS) ---
+// --- FOTOS ESTÉTICAS PARA EL MENÚ PRINCIPAL ---
 const categoryImages = {
     pecho: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80",
     espalda: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=600&q=80",
@@ -237,8 +245,14 @@ const searchInput = document.getElementById('searchInput');
 const categoryButtons = document.querySelectorAll('.cat-btn');
 const exerciseGrid = document.getElementById('exerciseGrid');
 const noResults = document.getElementById('noResults');
+// Modales
 const modal = document.getElementById('exerciseModal');
-const rouletteBtn = document.getElementById('rouletteBtn'); // ¡NUEVO!
+// NOTA: Capturamos estos elementos aquí, pero es mejor usarlos con comprobaciones
+// dentro de las funciones si el DOM aún no está listo, pero con DOMContentLoaded va bien.
+const imageViewerModal = document.getElementById('imageViewerModal'); 
+const img1 = document.getElementById('modalImg1'); 
+const enlargedImage = document.getElementById('enlargedImage');
+const rouletteBtn = document.getElementById('rouletteBtn'); 
 let currentCategory = 'all';
 
 // --- INICIALIZACIÓN ---
@@ -249,57 +263,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- LISTENERS ---
 function setupEventListeners() {
-    // 1. Buscador en tiempo real
+    // 1. Buscador
     searchInput.addEventListener('input', (e) => {
         renderExercises(e.target.value);
     });
 
-    // 2. Filtros de Categoría
+    // 2. Filtros PC
     categoryButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             categoryButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
             currentCategory = btn.dataset.category;
             renderExercises(searchInput.value);
         });
     });
 
-    // 3. Listener del JUEGO / RULETA (¡NUEVO!)
+    // 3. Ruleta
     if (rouletteBtn) {
         rouletteBtn.addEventListener('click', triggerRoulette);
     }
 }
 
-// --- FUNCIÓN DEL JUEGO / RULETA (¡NUEVO!) ---
+// --- RULETA ---
 function triggerRoulette() {
-    // 1. Resetear todos los filtros para elegir de TODOS los ejercicios
     currentCategory = 'all';
     searchInput.value = '';
-    
-    // Resetear botones visualmente
     categoryButtons.forEach(b => b.classList.remove('active'));
-    // Activar el botón de "TODO"
     const allBtn = document.querySelector('.cat-btn[data-category="all"]');
     if(allBtn) allBtn.classList.add('active');
 
-    // 2. Renderizar todo de nuevo
     renderExercises();
-
-    // 3. Scroll suave hacia la rejilla de ejercicios
     exerciseGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // 4. Elegir ejercicio aleatorio (La "suerte")
     const randomIndex = Math.floor(Math.random() * exerciseData.length);
     const selectedExercise = exerciseData[randomIndex];
 
-    // 5. Abrir el modal con un pequeño retraso para dar efecto de "pensando"
     setTimeout(() => {
         openModal(selectedExercise);
     }, 500);
 }
 
-// --- FUNCIÓN PRINCIPAL: PINTAR LOS EJERCICIOS ---
+// --- RENDER GRID (Fotos estéticas) ---
 function renderExercises(searchTerm = '') {
     exerciseGrid.innerHTML = ''; 
     const term = searchTerm.toLowerCase();
@@ -320,7 +324,7 @@ function renderExercises(searchTerm = '') {
     noResults.style.opacity = '0';
 
     filtered.forEach(ex => {
-        const localImgPath = `media/Ejercicios/${ex.name}.gif`; 
+        const thumbnailImg = categoryImages[ex.category] || categoryImages.default;
         
         const card = document.createElement('div');
         card.className = 'exercise-card group relative bg-gray-900 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:-translate-y-1';
@@ -328,19 +332,11 @@ function renderExercises(searchTerm = '') {
         card.innerHTML = `
             <div class="h-56 overflow-hidden relative">
                 <div class="absolute inset-0 bg-red-900 mix-blend-multiply opacity-0 group-hover:opacity-40 transition-opacity z-10 duration-300"></div>
-                
-                <img src="${localImgPath}" 
-                     alt="${ex.name}" 
-                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                     onerror="this.onerror=null; this.src='${categoryImages[ex.category] || categoryImages.default}';">
-                
+                <img src="${thumbnailImg}" alt="${ex.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute top-3 left-3 z-20">
-                    <span class="bg-black/90 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded border border-gray-700 uppercase tracking-widest shadow-lg">
-                        ${ex.category}
-                    </span>
+                    <span class="bg-black/90 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded border border-gray-700 uppercase tracking-widest shadow-lg">${ex.category}</span>
                 </div>
             </div>
-            
             <div class="p-5 relative z-20 bg-gray-900 border-t border-gray-800">
                 <div class="flex justify-between items-start gap-2">
                     <h3 class="text-3xl font-display font-bold text-gray-200 leading-none group-hover:text-red-500 transition-colors uppercase">${ex.name}</h3>
@@ -348,30 +344,32 @@ function renderExercises(searchTerm = '') {
                 </div>
             </div>
         `;
-        
         card.addEventListener('click', () => openModal(ex));
         exerciseGrid.appendChild(card);
     });
 }
 
-// --- LÓGICA DEL MODAL (POP UP) ---
+// --- MODAL INFO ---
 function openModal(exercise) {
     const title = document.getElementById('modalTitle');
     const category = document.getElementById('modalCategory');
     const iframe = document.getElementById('modalVideo');
     const variantsList = document.getElementById('modalVariants');
-    const img1 = document.getElementById('modalImg1');
+    // img1 es la imagen pequeña dentro del modal
 
     title.textContent = exercise.name;
     category.textContent = exercise.category;
-    
     iframe.src = `https://www.youtube.com/embed/${exercise.videoId}?autoplay=1&mute=1&loop=1&playlist=${exercise.videoId}&controls=1&modestbranding=1&rel=0`;
 
-    const localImgPath = `media/Ejercicios/${exercise.name}.gif`;
+    const fileName = exercise.fileName ? exercise.fileName : `${exercise.name}.gif`;
+    const localImgPath = `media/Ejercicios/${fileName}`;
     const fallbackImg = categoryImages[exercise.category] || categoryImages.default;
     
-    img1.src = localImgPath;
-    img1.onerror = () => { img1.src = fallbackImg; };
+    // Asignar al modal
+    if(img1) {
+        img1.src = localImgPath;
+        img1.onerror = () => { img1.src = fallbackImg; };
+    }
 
     variantsList.innerHTML = '';
     if(exercise.variants && exercise.variants.length > 0) {
@@ -394,4 +392,27 @@ function closeModal() {
     iframe.src = '';
     modal.classList.add('hidden');
     document.body.classList.remove('overflow-hidden');
+}
+
+// --- FUNCIONES VISOR (AGRANDAR IMAGEN) ---
+// Estas funciones se llaman desde el HTML onclick="openImageViewer()"
+function openImageViewer() {
+    const viewer = document.getElementById('imageViewerModal');
+    const bigImg = document.getElementById('enlargedImage');
+    const smallImg = document.getElementById('modalImg1');
+
+    if(viewer && bigImg && smallImg) {
+        bigImg.src = smallImg.src; // Copia la imagen (GIF) actual
+        viewer.classList.remove('hidden');
+    }
+}
+
+function closeImageViewer() {
+    const viewer = document.getElementById('imageViewerModal');
+    const bigImg = document.getElementById('enlargedImage');
+    
+    if(viewer) {
+        viewer.classList.add('hidden');
+        if(bigImg) setTimeout(() => { bigImg.src = ''; }, 300);
+    }
 }

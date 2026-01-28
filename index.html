@@ -118,11 +118,17 @@
                     </div>
 
                     <div class="mb-6 space-y-2">
-                        <p class="text-gray-500 text-xs uppercase tracking-widest font-bold flex items-center gap-2">
-                            <ion-icon name="eye"></ion-icon> Guía Visual
+                        <p class="text-gray-500 text-xs uppercase tracking-widest font-bold flex items-center justify-between">
+                            <span class="flex items-center gap-2"><ion-icon name="eye"></ion-icon> Guía Visual (GIF)</span>
+                            <span class="text-[10px] opacity-50 font-normal lowercase text-red-400">(click para agrandar)</span>
                         </p>
-                        <div class="rounded-lg overflow-hidden border border-gray-800 bg-gray-900 relative aspect-video shadow-lg group">
+                        
+                        <div class="rounded-lg overflow-hidden border border-gray-800 bg-gray-900 relative aspect-video shadow-lg group cursor-pointer hover:border-red-500 transition-colors" onclick="openImageViewer()">
                             <img id="modalImg1" src="" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500">
+                            
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                                <ion-icon name="expand" class="text-white text-5xl drop-shadow-xl"></ion-icon>
+                            </div>
                         </div>
                     </div>
 
@@ -146,6 +152,17 @@
         </div>
     </div>
 
+    <div id="imageViewerModal" class="fixed inset-0 hidden" style="z-index: 9999;" onclick="closeImageViewer()">
+        <div class="absolute inset-0 bg-black/95 backdrop-blur-xl transition-opacity"></div>
+        <div class="relative z-10 flex items-center justify-center h-screen w-screen p-4 animate-modal-up">
+            <img id="enlargedImage" src="" class="max-h-[90vh] max-w-[95vw] object-contain rounded-lg shadow-2xl border border-gray-800 bg-black">
+            
+            <button class="absolute top-6 right-6 text-white bg-red-600 rounded-full p-4 hover:bg-red-700 transition-colors shadow-lg z-50">
+                <ion-icon name="close" class="text-4xl"></ion-icon>
+            </button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 
     <script>
@@ -155,12 +172,11 @@
 
             if(menuBtn && filters) {
                 menuBtn.addEventListener('click', () => {
-                    // Alternar la clase 'hidden' y 'grid'
                     if (filters.classList.contains('hidden')) {
                         filters.classList.remove('hidden');
                         filters.classList.add('grid');
                         menuBtn.innerHTML = '<ion-icon name="close"></ion-icon> CERRAR FILTROS';
-                        menuBtn.classList.add('bg-red-900', 'border-red-600'); // Cambiar color al estar activo
+                        menuBtn.classList.add('bg-red-900', 'border-red-600');
                     } else {
                         filters.classList.add('hidden');
                         filters.classList.remove('grid');
