@@ -69,7 +69,11 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3" id="categoryButtons">
+            <button id="mobileMenuBtn" class="md:hidden w-full bg-gray-900 border border-gray-700 text-white font-display text-2xl uppercase tracking-wider py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 hover:border-red-600 transition-all shadow-lg active:scale-95">
+                <ion-icon name="filter"></ion-icon> FILTROS / CATEGORÍAS
+            </button>
+
+            <div class="hidden md:grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 transition-all duration-300 ease-in-out" id="categoryButtons">
                 <button class="cat-btn active col-span-2 md:col-span-4 lg:col-span-1" data-category="all">
                     <ion-icon name="grid"></ion-icon> TODO
                 </button>
@@ -143,5 +147,29 @@
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const filters = document.getElementById('categoryButtons');
+
+            if(menuBtn && filters) {
+                menuBtn.addEventListener('click', () => {
+                    // Alternar la clase 'hidden' y 'grid'
+                    if (filters.classList.contains('hidden')) {
+                        filters.classList.remove('hidden');
+                        filters.classList.add('grid');
+                        menuBtn.innerHTML = '<ion-icon name="close"></ion-icon> CERRAR FILTROS';
+                        menuBtn.classList.add('bg-red-900', 'border-red-600'); // Cambiar color al estar activo
+                    } else {
+                        filters.classList.add('hidden');
+                        filters.classList.remove('grid');
+                        menuBtn.innerHTML = '<ion-icon name="filter"></ion-icon> FILTROS / CATEGORÍAS';
+                        menuBtn.classList.remove('bg-red-900', 'border-red-600');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

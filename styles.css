@@ -192,10 +192,12 @@ body {
         padding: 1rem;
     }
 
-    /* Ajuste de la rejilla de botones */
+    /* Ajuste de la rejilla de botones para cuando se despliegan */
     .cat-btn {
         font-size: 1.2rem; /* Texto más pequeño para que quepa */
         padding: 0.8rem 0.4rem;
+        /* Hacemos que en móvil parezcan botones grandes táctiles */
+        min-height: 50px; 
     }
     
     .cat-btn ion-icon {
