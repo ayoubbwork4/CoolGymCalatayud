@@ -1,6 +1,6 @@
 'use strict';
 
-// --- BASE DE DATOS DE EJERCICIOS ---
+// --- BASE DE DATOS DE EJERCICIOS (BÁSICOS Y FUNDAMENTALES) ---
 const exerciseData = [
     // --- PECHO ---
     {
@@ -233,10 +233,12 @@ const categoryImages = {
     pecho: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80",
     espalda: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=600&q=80",
     piernas: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80",
-    hombros: "https://images.unsplash.com/photo-1532029837066-656edef25b2e?auto=format&fit=crop&w=600&q=80",
+    // ¡AQUÍ ESTÁN LAS LÍNEAS MODIFICADAS CON LAS FOTOS NUEVAS ESTILO OSCURO!
+    hombros: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80", 
     brazos: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80",
     core: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80",
-    cardio: "https://images.unsplash.com/photo-1538805060512-e2d988d52666?auto=format&fit=crop&w=600&q=80",
+    // FOTO NUEVA PARA CARDIO (Estilo oscuro)
+    cardio: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=600&q=80", 
     default: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80"
 };
 
@@ -273,6 +275,7 @@ function setupEventListeners() {
         btn.addEventListener('click', () => {
             categoryButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            
             currentCategory = btn.dataset.category;
             renderExercises(searchInput.value);
         });
@@ -284,10 +287,11 @@ function setupEventListeners() {
     }
 }
 
-// --- RULETA ---
+// --- RULETA / JUEGO ---
 function triggerRoulette() {
     currentCategory = 'all';
     searchInput.value = '';
+    
     categoryButtons.forEach(b => b.classList.remove('active'));
     const allBtn = document.querySelector('.cat-btn[data-category="all"]');
     if(allBtn) allBtn.classList.add('active');
@@ -303,7 +307,7 @@ function triggerRoulette() {
     }, 500);
 }
 
-// --- RENDER GRID (Fotos estéticas) ---
+// --- RENDERIZADO PRINCIPAL (GRID) ---
 function renderExercises(searchTerm = '') {
     exerciseGrid.innerHTML = ''; 
     const term = searchTerm.toLowerCase();
@@ -324,6 +328,8 @@ function renderExercises(searchTerm = '') {
     noResults.style.opacity = '0';
 
     filtered.forEach(ex => {
+        // --- AQUÍ ESTÁ EL CAMBIO PARA QUE SE VEA ESTÉTICO ---
+        // En la rejilla usamos la IMAGEN DE CATEGORÍA (bonita), no el GIF.
         const thumbnailImg = categoryImages[ex.category] || categoryImages.default;
         
         const card = document.createElement('div');
@@ -332,11 +338,18 @@ function renderExercises(searchTerm = '') {
         card.innerHTML = `
             <div class="h-56 overflow-hidden relative">
                 <div class="absolute inset-0 bg-red-900 mix-blend-multiply opacity-0 group-hover:opacity-40 transition-opacity z-10 duration-300"></div>
-                <img src="${thumbnailImg}" alt="${ex.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                
+                <img src="${thumbnailImg}" 
+                     alt="${ex.name}" 
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                
                 <div class="absolute top-3 left-3 z-20">
-                    <span class="bg-black/90 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded border border-gray-700 uppercase tracking-widest shadow-lg">${ex.category}</span>
+                    <span class="bg-black/90 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded border border-gray-700 uppercase tracking-widest shadow-lg">
+                        ${ex.category}
+                    </span>
                 </div>
             </div>
+            
             <div class="p-5 relative z-20 bg-gray-900 border-t border-gray-800">
                 <div class="flex justify-between items-start gap-2">
                     <h3 class="text-3xl font-display font-bold text-gray-200 leading-none group-hover:text-red-500 transition-colors uppercase">${ex.name}</h3>
@@ -344,12 +357,13 @@ function renderExercises(searchTerm = '') {
                 </div>
             </div>
         `;
+        
         card.addEventListener('click', () => openModal(ex));
         exerciseGrid.appendChild(card);
     });
 }
 
-// --- MODAL INFO ---
+// --- LÓGICA DEL MODAL (POP UP) ---
 function openModal(exercise) {
     const title = document.getElementById('modalTitle');
     const category = document.getElementById('modalCategory');
