@@ -176,6 +176,23 @@ body {
     animation: modalUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* NUEVO: ANIMACIÓN EN CASCADA PARA LAS TARJETAS */
+@keyframes fadeInUpCascade {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-cascade {
+    opacity: 0; /* Empieza oculto para que la animación lo revele */
+    animation: fadeInUpCascade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* =========================================
    RESPONSIVE / VERSIÓN MÓVIL CHULA
    ========================================= */

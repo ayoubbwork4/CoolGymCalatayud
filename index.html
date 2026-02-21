@@ -66,6 +66,10 @@
                     <ion-icon name="search" class="text-4xl text-gray-600 ml-6"></ion-icon>
                     <input type="text" id="searchInput" placeholder="BUSCAR EJERCICIO..." 
                            class="w-full p-6 bg-transparent text-xl md:text-3xl font-display tracking-wide text-white placeholder-gray-600 focus:outline-none uppercase">
+                    
+                    <button id="clearSearchBtn" class="hidden absolute right-6 text-4xl text-gray-500 hover:text-red-500 transition-colors z-20">
+                        <ion-icon name="close-circle"></ion-icon>
+                    </button>
                 </div>
             </div>
 
@@ -161,6 +165,21 @@
                 <ion-icon name="close" class="text-4xl"></ion-icon>
             </button>
         </div>
+    </div>
+
+    <div id="screensaver" class="fixed inset-0 bg-black z-[99999] flex flex-col items-center justify-center transition-opacity duration-1000 hidden cursor-pointer" style="opacity: 0;">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-red-900/20 to-black"></div>
+        
+        <img src="media/logo.png" alt="The Cool Gym" class="h-48 md:h-64 drop-shadow-[0_0_30px_rgba(220,38,38,0.8)] animate-pulse relative z-10">
+        
+        <h1 class="font-display text-6xl md:text-8xl text-white mt-8 tracking-widest relative z-10 uppercase text-center drop-shadow-lg">
+            The <span class="text-red-600 neon-text">Cool</span> Gym
+        </h1>
+        
+        <p class="font-sans text-red-500 text-xl md:text-3xl mt-6 tracking-[0.4em] uppercase font-bold animate-bounce relative z-10 text-center">
+            Toca la pantalla para empezar
+        </p>
     </div>
 
     <script src="script.js"></script>

@@ -242,18 +242,35 @@ const categoryImages = {
 
 // --- VARIABLES GLOBALES ---
 const searchInput = document.getElementById('searchInput');
+const clearSearchBtn = document.getElementById('clearSearchBtn'); // NUEVO: Botón limpiar
 const categoryButtons = document.querySelectorAll('.cat-btn');
 const exerciseGrid = document.getElementById('exerciseGrid');
 const noResults = document.getElementById('noResults');
+
 // Modales
 const modal = document.getElementById('exerciseModal');
-// NOTA: Capturamos estos elementos aquí, pero es mejor usarlos con comprobaciones
-// dentro de las funciones si el DOM aún no está listo, pero con DOMContentLoaded va bien.
 const imageViewerModal = document.getElementById('imageViewerModal'); 
 const img1 = document.getElementById('modalImg1'); 
 const enlargedImage = document.getElementById('enlargedImage');
 const rouletteBtn = document.getElementById('rouletteBtn'); 
 let currentCategory = 'all';
+
+// NUEVO: Opcional, sonido de click háptico (genera un "pop" bajito usando el AudioContext del navegador)
+function playHapticClick() {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime); // Tono grave
+        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.05);
+    } catch(e) { } // Si el navegador bloquea el audio, no pasa nada
+}
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -265,12 +282,29 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupEventListeners() {
     // 1. Buscador
     searchInput.addEventListener('input', (e) => {
+        // Mostrar botón de limpiar si hay texto
+        if(e.target.value.length > 0) {
+            clearSearchBtn.classList.remove('hidden');
+        } else {
+            clearSearchBtn.classList.add('hidden');
+        }
         renderExercises(e.target.value);
     });
+
+    // NUEVO: Limpiar búsqueda
+    if(clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', () => {
+            playHapticClick();
+            searchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            renderExercises();
+        });
+    }
 
     // 2. Filtros PC
     categoryButtons.forEach(btn => {
         btn.addEventListener('click', () => {
+            playHapticClick();
             categoryButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
@@ -281,7 +315,10 @@ function setupEventListeners() {
 
     // 3. Ruleta
     if (rouletteBtn) {
-        rouletteBtn.addEventListener('click', triggerRoulette);
+        rouletteBtn.addEventListener('click', () => {
+            playHapticClick();
+            triggerRoulette();
+        });
     }
 }
 
@@ -289,6 +326,7 @@ function setupEventListeners() {
 function triggerRoulette() {
     currentCategory = 'all';
     searchInput.value = '';
+    if(clearSearchBtn) clearSearchBtn.classList.add('hidden');
     
     categoryButtons.forEach(b => b.classList.remove('active'));
     const allBtn = document.querySelector('.cat-btn[data-category="all"]');
@@ -325,13 +363,14 @@ function renderExercises(searchTerm = '') {
     noResults.classList.add('hidden');
     noResults.style.opacity = '0';
 
-    filtered.forEach(ex => {
-        // --- AQUÍ ESTÁ EL CAMBIO PARA QUE SE VEA ESTÉTICO ---
-        // En la rejilla usamos la IMAGEN DE CATEGORÍA (bonita), no el GIF.
+    filtered.forEach((ex, index) => { // NUEVO: Se añade el index para la cascada
         const thumbnailImg = categoryImages[ex.category] || categoryImages.default;
         
         const card = document.createElement('div');
-        card.className = 'exercise-card group relative bg-gray-900 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:-translate-y-1';
+        // NUEVO: Se añade 'card-cascade' a las clases de la tarjeta
+        card.className = 'card-cascade exercise-card group relative bg-gray-900 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:-translate-y-1';
+        // NUEVO: Retardo progresivo según el orden de la tarjeta
+        card.style.animationDelay = `${index * 0.05}s`; 
         
         card.innerHTML = `
             <div class="h-56 overflow-hidden relative">
@@ -356,7 +395,10 @@ function renderExercises(searchTerm = '') {
             </div>
         `;
         
-        card.addEventListener('click', () => openModal(ex));
+        card.addEventListener('click', () => {
+            playHapticClick();
+            openModal(ex);
+        });
         exerciseGrid.appendChild(card);
     });
 }
@@ -367,7 +409,6 @@ function openModal(exercise) {
     const category = document.getElementById('modalCategory');
     const iframe = document.getElementById('modalVideo');
     const variantsList = document.getElementById('modalVariants');
-    // img1 es la imagen pequeña dentro del modal
 
     title.textContent = exercise.name;
     category.textContent = exercise.category;
@@ -377,7 +418,6 @@ function openModal(exercise) {
     const localImgPath = `media/Ejercicios/${fileName}`;
     const fallbackImg = categoryImages[exercise.category] || categoryImages.default;
     
-    // Asignar al modal
     if(img1) {
         img1.src = localImgPath;
         img1.onerror = () => { img1.src = fallbackImg; };
@@ -407,24 +447,65 @@ function closeModal() {
 }
 
 // --- FUNCIONES VISOR (AGRANDAR IMAGEN) ---
-// Estas funciones se llaman desde el HTML onclick="openImageViewer()"
 function openImageViewer() {
-    const viewer = document.getElementById('imageViewerModal');
-    const bigImg = document.getElementById('enlargedImage');
-    const smallImg = document.getElementById('modalImg1');
-
-    if(viewer && bigImg && smallImg) {
-        bigImg.src = smallImg.src; // Copia la imagen (GIF) actual
-        viewer.classList.remove('hidden');
+    playHapticClick();
+    if(img1 && enlargedImage && imageViewerModal) {
+        enlargedImage.src = img1.src; 
+        imageViewerModal.classList.remove('hidden');
     }
 }
 
 function closeImageViewer() {
-    const viewer = document.getElementById('imageViewerModal');
-    const bigImg = document.getElementById('enlargedImage');
-    
-    if(viewer) {
-        viewer.classList.add('hidden');
-        if(bigImg) setTimeout(() => { bigImg.src = ''; }, 300);
+    if(imageViewerModal) {
+        imageViewerModal.classList.add('hidden');
+        if(enlargedImage) {
+            setTimeout(() => { enlargedImage.src = ''; }, 300);
+        }
     }
 }
+
+// --- NUEVO: LÓGICA DEL SALVAPANTALLAS (IDLE MODE) ---
+let idleTimer;
+const IDLE_TIMEOUT = 3000; // 2 minutos (120000 ms). Cámbialo si quieres más tiempo.
+const screensaver = document.getElementById('screensaver');
+
+function resetIdleTimer() {
+    // Si el salvapantallas está visible, ocultarlo suavemente
+    if (screensaver && !screensaver.classList.contains('hidden')) {
+        screensaver.style.opacity = '0';
+        setTimeout(() => {
+            screensaver.classList.add('hidden');
+        }, 500); // 500ms para que se desvanezca suavemente
+    }
+    
+    // Limpiar el contador actual
+    clearTimeout(idleTimer);
+    
+    // Configurar nuevo contador
+    idleTimer = setTimeout(() => {
+        // Cuando pasan los 2 minutos: cerrar modales abiertos y volver al inicio
+        closeModal();
+        closeImageViewer();
+        if(searchInput.value !== '') {
+            searchInput.value = '';
+            if(clearSearchBtn) clearSearchBtn.classList.add('hidden');
+            renderExercises();
+        }
+        
+        // Mostrar salvapantallas
+        if (screensaver) {
+            screensaver.classList.remove('hidden');
+            // Hack forzar el reflow para que la animación de opacidad funcione
+            void screensaver.offsetWidth; 
+            screensaver.style.opacity = '1';
+        }
+    }, IDLE_TIMEOUT);
+}
+
+// Escuchar cualquier tipo de interacción en la pantalla para resetear el tiempo
+['touchstart', 'mousemove', 'keydown', 'scroll', 'click'].forEach(evt => {
+    document.addEventListener(evt, resetIdleTimer, true);
+});
+
+// Arrancar el temporizador por primera vez
+resetIdleTimer();
