@@ -1,6 +1,6 @@
 'use strict';
 
-// --- BASE DE DATOS DE EJERCICIOS (BÁSICOS Y FUNDAMENTALES) ---
+// --- BASE DE DATOS DE EJERCICIOS ---
 const exerciseData = [
     // --- PECHO ---
     {
@@ -15,7 +15,7 @@ const exerciseData = [
         id: "pecho_2",
         name: "Press Inclinado Mancuernas",
         category: "pecho",
-        videoId: "0G2_XV7-A4s", 
+        videoId: "PAd6ezGbDUQ", // ACTUALIZADO
         fileName: "pressinclinadomanc.jpg", // Archivo real
         variants: ["Press Inclinado Barra", "Aperturas Inclinadas"]
     },
@@ -89,7 +89,7 @@ const exerciseData = [
         id: "pierna_1",
         name: "Sentadilla Libre",
         category: "piernas",
-        videoId: "SW_8ORKN8G4", 
+        videoId: "dsCuiccYNGs", // ACTUALIZADO
         variants: ["Prensa", "Sentadilla Goblet"]
     },
     {
@@ -103,14 +103,14 @@ const exerciseData = [
         id: "pierna_3",
         name: "Extensión de Cuádriceps",
         category: "piernas",
-        videoId: "YyvSfVjS62I",
+        videoId: "J-Y-Z0EU9Ic", // ACTUALIZADO
         variants: ["Sentadilla Sissy", "Zancadas"]
     },
     {
         id: "pierna_4",
         name: "Curl Femoral Tumbado",
         category: "piernas",
-        videoId: "1Tq3QdYU-hA",
+        videoId: "VEAv16_YIF0", // ACTUALIZADO
         variants: ["Peso Muerto Rumano", "Curl Sentado"]
     },
     {
@@ -124,7 +124,7 @@ const exerciseData = [
         id: "pierna_6",
         name: "Hip Thrust",
         category: "piernas",
-        videoId: "EF7jnIyARfk", 
+        videoId: "5S8SApGU_Lk", // ACTUALIZADO
         variants: ["Puente de Glúteo", "Peso Muerto"]
     },
 
@@ -147,7 +147,7 @@ const exerciseData = [
         id: "hombro_3",
         name: "Pájaros (Posterior)",
         category: "hombros",
-        videoId: "z1r2142277k", 
+        videoId: "24z3h_bZ7Zo", // ACTUALIZADO
         variants: ["Face Pull", "Peck Deck Inverso"]
     },
 
@@ -156,7 +156,7 @@ const exerciseData = [
         id: "brazos_1",
         name: "Curl de Bíceps Barra",
         category: "brazos",
-        videoId: "kwG2Zqt10-E",
+        videoId: "no-dXip-rJM", // ACTUALIZADO
         variants: ["Curl Martillo", "Curl con Mancuerna"]
     },
     {
@@ -209,21 +209,21 @@ const exerciseData = [
         id: "cardio_1",
         name: "Cinta de Correr",
         category: "cardio",
-        videoId: "8i3VnR5B6KU",
+        videoId: "clOMvIG1R-o", // ACTUALIZADO
         variants: ["Caminar Inclinado", "Correr al aire libre"]
     },
     {
         id: "cardio_2",
         name: "Elíptica",
         category: "cardio",
-        videoId: "4A8X4c3K3iI",
+        videoId: "Sbv44Rf-5U0", // ACTUALIZADO
         variants: ["Bicicleta", "Cinta"]
     },
     {
         id: "cardio_3",
         name: "Remo Concept 2",
         category: "cardio",
-        videoId: "H0r_Zcp_pMQ",
+        videoId: "kPA-X9IfBgU", // ACTUALIZADO
         variants: ["Assault Bike", "SkiErg"]
     }
 ];
@@ -233,11 +233,9 @@ const categoryImages = {
     pecho: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80",
     espalda: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=600&q=80",
     piernas: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80",
-    // ¡AQUÍ ESTÁN LAS LÍNEAS MODIFICADAS CON LAS FOTOS NUEVAS ESTILO OSCURO!
     hombros: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80", 
     brazos: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80",
     core: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80",
-    // FOTO NUEVA PARA CARDIO (Estilo oscuro)
     cardio: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=600&q=80", 
     default: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80"
 };
