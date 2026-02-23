@@ -466,7 +466,7 @@ function closeImageViewer() {
 
 // --- NUEVO: LÓGICA DEL SALVAPANTALLAS (IDLE MODE) ---
 let idleTimer;
-const IDLE_TIMEOUT = 3000000; // 2 minutos (120000 ms). Cámbialo si quieres más tiempo.
+const IDLE_TIMEOUT = 120000; // 2 minutos (120000 ms). Cámbialo si quieres más tiempo.
 const screensaver = document.getElementById('screensaver');
 
 function resetIdleTimer() {
