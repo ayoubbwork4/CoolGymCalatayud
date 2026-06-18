@@ -8,30 +8,42 @@ const exerciseData = [
         name: "Press de Banca con Barra",
         category: "pecho",
         videoId: "rT7DgCr-3pg", 
-        fileName: "pressbancabarra.gif", // Archivo real
+        fileName: "pressbancabarra.gif",
         variants: ["Press con Mancuernas", "Flexiones con Lastre"]
+        // (Sin videoFile porque no estaba en tu lista exacta, tirará de YouTube)
     },
     {
         id: "pecho_2",
-        name: "Press Inclinado Mancuernas",
+        name: "Press Inclinado con Barra",
         category: "pecho",
-        videoId: "PAd6ezGbDUQ", // ACTUALIZADO
-        fileName: "pressinclinadomanc.jpg", // Archivo real
-        variants: ["Press Inclinado Barra", "Aperturas Inclinadas"]
+        videoId: "PAd6ezGbDUQ",
+        videoFile: "press_de_banca_inclinado_con_barra.mp4",
+        fileName: "pressinclinadomanc.jpg",
+        variants: ["Press Inclinado Mancuernas"]
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName para que no busque GIF)
+        id: "pecho_2_alt",
+        name: "Press Inclinado con Barra (Var)",
+        category: "pecho",
+        videoId: "PAd6ezGbDUQ",
+        videoFile: "press_de_banca_inclinado_con_barra2.mp4",
+        variants: []
     },
     {
         id: "pecho_3",
         name: "Aperturas (Mancuernas)",
         category: "pecho",
         videoId: "taI4XduLpTk",
-        fileName: "Apertura mancuernas.gif", // Archivo real
+        fileName: "Apertura mancuernas.gif",
         variants: ["Aperturas en Máquina (Pec Deck)", "Cruce de Poleas"]
     },
     {
         id: "pecho_4",
-        name: "Fondos en Paralelas",
+        name: "Fondos en Máquina",
         category: "pecho",
         videoId: "2z8JmcrW-As",
+        videoFile: "fondos_en_máquina.mp4",
         variants: ["Press Declinado", "Flexiones Diamante"]
     },
     {
@@ -39,8 +51,16 @@ const exerciseData = [
         name: "Flexiones (Push Ups)",
         category: "pecho",
         videoId: "IODxDxX7oi4",
-        fileName: "pushup.gif", // Archivo real
+        fileName: "pushup.gif",
         variants: ["Press Banca", "Flexiones Inclinadas"]
+    },
+    {
+        id: "pecho_6",
+        name: "Cruce de Poleas",
+        category: "pecho",
+        videoId: "taI4XduLpTk", 
+        fileName: "cruce_poleas.gif",
+        variants: ["Aperturas en Máquina", "Flexiones"]
     },
 
     // --- ESPALDA ---
@@ -49,8 +69,18 @@ const exerciseData = [
         name: "Jalón al Pecho",
         category: "espalda",
         videoId: "CAwf7n6Luuc",
+        videoFile: "Jalon_al_pecho.mp4",
         fileName: "jalonpechp.gif", 
         variants: ["Dominadas", "Jalón Supino"]
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "espalda_1_alt",
+        name: "Jalón al Pecho Polea Alta",
+        category: "espalda",
+        videoId: "CAwf7n6Luuc",
+        videoFile: "jalon_al_pecho_en_polea_alta.mp4",
+        variants: []
     },
     {
         id: "espalda_2",
@@ -65,31 +95,71 @@ const exerciseData = [
         name: "Dominadas",
         category: "espalda",
         videoId: "eGo4IYlbE5g",
+        videoFile: "Dominadas.mp4",
         fileName: "Dominadas.gif", 
         variants: ["Jalón al Pecho", "Dominadas Asistidas"]
     },
     {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "espalda_3_alt",
+        name: "Dominada (Variante)",
+        category: "espalda",
+        videoId: "eGo4IYlbE5g",
+        videoFile: "Dominada.mp4",
+        variants: []
+    },
+    {
         id: "espalda_4",
-        name: "Peso Muerto",
+        name: "Peso Muerto Rumano",
         category: "espalda",
         videoId: "op9kVnSso6Q",
+        videoFile: "peso_muerto_rumano.mp4",
         fileName: "pesomuerto.gif", 
-        variants: ["Peso Muerto Rumano", "Hip Thrust"]
+        variants: ["Peso Muerto Convencional", "Hip Thrust"]
     },
     {
         id: "espalda_5",
-        name: "Remo Gironda",
+        name: "Máquina de Remo",
         category: "espalda",
         videoId: "GZbfZ033f74",
+        videoFile: "maquina_de_remo.mp4",
         variants: ["Remo con Barra", "Remo Unilateral"]
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "espalda_6",
+        name: "Extensión de Espalda",
+        category: "espalda",
+        videoId: "op9kVnSso6Q",
+        videoFile: "extensión_de_espalda.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "espalda_7",
+        name: "Extensiones de Espalda",
+        category: "espalda",
+        videoId: "op9kVnSso6Q",
+        videoFile: "extensiones_de_espalda.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "espalda_8",
+        name: "Remo en Punta (Barra T)",
+        category: "espalda",
+        videoId: "G8l_8chR5BE",
+        videoFile: "remo_en_punta_o_remo_con_barra_T.mp4",
+        variants: []
     },
 
     // --- PIERNAS ---
     {
         id: "pierna_1",
-        name: "Sentadilla Libre",
+        name: "Sentadilla con Barra Trasera",
         category: "piernas",
-        videoId: "dsCuiccYNGs", // ACTUALIZADO
+        videoId: "dsCuiccYNGs",
+        videoFile: "sentadilla_con_barra_trasera.mp4",
         variants: ["Prensa", "Sentadilla Goblet"]
     },
     {
@@ -103,14 +173,16 @@ const exerciseData = [
         id: "pierna_3",
         name: "Extensión de Cuádriceps",
         category: "piernas",
-        videoId: "J-Y-Z0EU9Ic", // ACTUALIZADO
+        videoId: "J-Y-Z0EU9Ic",
+        videoFile: "Extension_cuadriceps.mp4",
         variants: ["Sentadilla Sissy", "Zancadas"]
     },
     {
         id: "pierna_4",
-        name: "Curl Femoral Tumbado",
+        name: "Curl Femoral",
         category: "piernas",
-        videoId: "VEAv16_YIF0", // ACTUALIZADO
+        videoId: "VEAv16_YIF0",
+        videoFile: "Femoral.mp4",
         variants: ["Peso Muerto Rumano", "Curl Sentado"]
     },
     {
@@ -122,10 +194,74 @@ const exerciseData = [
     },
     {
         id: "pierna_6",
-        name: "Hip Thrust",
+        name: "Patada de Glúteo",
         category: "piernas",
-        videoId: "5S8SApGU_Lk", // ACTUALIZADO
+        videoId: "5S8SApGU_Lk",
+        videoFile: "patada_gluteo.mp4",
         variants: ["Puente de Glúteo", "Peso Muerto"]
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_7",
+        name: "Abductores Sentado",
+        category: "piernas",
+        videoId: "IZxyjW7MPJQ",
+        videoFile: "abductores_sentado.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_8",
+        name: "Aductores",
+        category: "piernas",
+        videoId: "IZxyjW7MPJQ",
+        videoFile: "Aductores.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_9",
+        name: "Glúteos",
+        category: "piernas",
+        videoId: "5S8SApGU_Lk",
+        videoFile: "Gluteos.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_10",
+        name: "Patada de Glúteo en Máquina",
+        category: "piernas",
+        videoId: "5S8SApGU_Lk",
+        videoFile: "patada_de_gluteo_en_maquina.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_11",
+        name: "Patada de Glúteo en Máquina 2",
+        category: "piernas",
+        videoId: "5S8SApGU_Lk",
+        videoFile: "patada_de_gluteo__en_maquina2.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_12",
+        name: "Patada",
+        category: "piernas",
+        videoId: "5S8SApGU_Lk",
+        videoFile: "patada.mp4",
+        variants: []
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "pierna_13",
+        name: "Péndulo de Glúteo",
+        category: "piernas",
+        videoId: "5S8SApGU_Lk",
+        videoFile: "pendulo_de_glúteo.mp4",
+        variants: []
     },
 
     // --- HOMBROS ---
@@ -147,7 +283,7 @@ const exerciseData = [
         id: "hombro_3",
         name: "Pájaros (Posterior)",
         category: "hombros",
-        videoId: "24z3h_bZ7Zo", // ACTUALIZADO
+        videoId: "24z3h_bZ7Zo",
         variants: ["Face Pull", "Peck Deck Inverso"]
     },
 
@@ -156,7 +292,7 @@ const exerciseData = [
         id: "brazos_1",
         name: "Curl de Bíceps Barra",
         category: "brazos",
-        videoId: "no-dXip-rJM", // ACTUALIZADO
+        videoId: "no-dXip-rJM",
         variants: ["Curl Martillo", "Curl con Mancuerna"]
     },
     {
@@ -184,16 +320,18 @@ const exerciseData = [
     // --- CORE (ABS) ---
     {
         id: "core_1",
-        name: "Plancha Abdominal",
+        name: "Abdominales",
         category: "core",
         videoId: "pSHjTRCQxIw",
+        videoFile: "Abdominales.mp4",
         variants: ["Plancha Lateral", "Rueda Abdominal"]
     },
     {
         id: "core_2",
-        name: "Crunches",
+        name: "Abdominales Inclinados",
         category: "core",
         videoId: "Xyd_fa5zoEU",
+        videoFile: "Abdominales_mas_inclinados.mp4",
         variants: ["Crunch en Polea", "Máquina Abs"]
     },
     {
@@ -209,22 +347,31 @@ const exerciseData = [
         id: "cardio_1",
         name: "Cinta de Correr",
         category: "cardio",
-        videoId: "clOMvIG1R-o", // ACTUALIZADO
+        videoId: "clOMvIG1R-o",
         variants: ["Caminar Inclinado", "Correr al aire libre"]
     },
     {
         id: "cardio_2",
         name: "Elíptica",
         category: "cardio",
-        videoId: "Sbv44Rf-5U0", // ACTUALIZADO
+        videoId: "Sbv44Rf-5U0",
         variants: ["Bicicleta", "Cinta"]
     },
     {
         id: "cardio_3",
         name: "Remo Concept 2",
         category: "cardio",
-        videoId: "kPA-X9IfBgU", // ACTUALIZADO
+        videoId: "kPA-X9IfBgU",
         variants: ["Assault Bike", "SkiErg"]
+    },
+    {
+        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        id: "cardio_4",
+        name: "Escaladora",
+        category: "cardio",
+        videoId: "Sbv44Rf-5U0",
+        videoFile: "escaladora.mp4",
+        variants: []
     }
 ];
 
@@ -242,12 +389,11 @@ const categoryImages = {
 
 // --- VARIABLES GLOBALES ---
 const searchInput = document.getElementById('searchInput');
-const clearSearchBtn = document.getElementById('clearSearchBtn'); // NUEVO: Botón limpiar
+const clearSearchBtn = document.getElementById('clearSearchBtn'); 
 const categoryButtons = document.querySelectorAll('.cat-btn');
 const exerciseGrid = document.getElementById('exerciseGrid');
 const noResults = document.getElementById('noResults');
 
-// Modales
 const modal = document.getElementById('exerciseModal');
 const imageViewerModal = document.getElementById('imageViewerModal'); 
 const img1 = document.getElementById('modalImg1'); 
@@ -255,7 +401,7 @@ const enlargedImage = document.getElementById('enlargedImage');
 const rouletteBtn = document.getElementById('rouletteBtn'); 
 let currentCategory = 'all';
 
-// NUEVO: Opcional, sonido de click háptico (genera un "pop" bajito usando el AudioContext del navegador)
+// --- SONIDO HÁPTICO ---
 function playHapticClick() {
     try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -264,12 +410,12 @@ function playHapticClick() {
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime); // Tono grave
+        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime); 
         gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.05);
-    } catch(e) { } // Si el navegador bloquea el audio, no pasa nada
+    } catch(e) { } 
 }
 
 // --- INICIALIZACIÓN ---
@@ -280,9 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- LISTENERS ---
 function setupEventListeners() {
-    // 1. Buscador
     searchInput.addEventListener('input', (e) => {
-        // Mostrar botón de limpiar si hay texto
         if(e.target.value.length > 0) {
             clearSearchBtn.classList.remove('hidden');
         } else {
@@ -291,7 +435,6 @@ function setupEventListeners() {
         renderExercises(e.target.value);
     });
 
-    // NUEVO: Limpiar búsqueda
     if(clearSearchBtn) {
         clearSearchBtn.addEventListener('click', () => {
             playHapticClick();
@@ -301,7 +444,6 @@ function setupEventListeners() {
         });
     }
 
-    // 2. Filtros PC
     categoryButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             playHapticClick();
@@ -313,7 +455,6 @@ function setupEventListeners() {
         });
     });
 
-    // 3. Ruleta
     if (rouletteBtn) {
         rouletteBtn.addEventListener('click', () => {
             playHapticClick();
@@ -363,13 +504,11 @@ function renderExercises(searchTerm = '') {
     noResults.classList.add('hidden');
     noResults.style.opacity = '0';
 
-    filtered.forEach((ex, index) => { // NUEVO: Se añade el index para la cascada
+    filtered.forEach((ex, index) => { 
         const thumbnailImg = categoryImages[ex.category] || categoryImages.default;
         
         const card = document.createElement('div');
-        // NUEVO: Se añade 'card-cascade' a las clases de la tarjeta
         card.className = 'card-cascade exercise-card group relative bg-gray-900 rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:-translate-y-1';
-        // NUEVO: Retardo progresivo según el orden de la tarjeta
         card.style.animationDelay = `${index * 0.05}s`; 
         
         card.innerHTML = `
@@ -403,24 +542,73 @@ function renderExercises(searchTerm = '') {
     });
 }
 
-// --- LÓGICA DEL MODAL (POP UP) ---
+// --- LÓGICA DEL MODAL CON YOUTUBE AUTOMÁTICO EN CASO DE FALLO ---
 function openModal(exercise) {
     const title = document.getElementById('modalTitle');
     const category = document.getElementById('modalCategory');
-    const iframe = document.getElementById('modalVideo');
+    const videoContainer = document.getElementById('videoContainer');
     const variantsList = document.getElementById('modalVariants');
 
     title.textContent = exercise.name;
     category.textContent = exercise.category;
-    iframe.src = `https://www.youtube.com/embed/${exercise.videoId}?autoplay=1&mute=1&loop=1&playlist=${exercise.videoId}&controls=1&modestbranding=1&rel=0`;
 
-    const fileName = exercise.fileName ? exercise.fileName : `${exercise.name}.gif`;
-    const localImgPath = `media/Ejercicios/${fileName}`;
+    videoContainer.innerHTML = ''; 
+
+    // Función auxiliar para cargar YouTube automáticamente
+    const loadYouTube = () => {
+        if (exercise.videoId) {
+            videoContainer.innerHTML = `
+                <iframe class="w-full h-full absolute inset-0" 
+                        src="https://www.youtube.com/embed/${exercise.videoId}?autoplay=1&mute=1&loop=1&playlist=${exercise.videoId}&controls=1&modestbranding=1&rel=0" 
+                        title="Video Ejercicio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+            `;
+        } else {
+            videoContainer.innerHTML = `<div class="text-gray-500 font-display text-2xl flex items-center justify-center h-full uppercase">Video no disponible</div>`;
+        }
+    };
+    
+    if (exercise.videoFile) {
+        // Creamos la estructura de vídeo de HTML5
+        const vid = document.createElement('video');
+        vid.className = "w-full h-full absolute inset-0 object-contain bg-black";
+        vid.controls = true;
+        vid.autoplay = true;
+        vid.loop = true;
+        vid.muted = true;
+        vid.playsInline = true;
+
+        const source = document.createElement('source');
+        // Aseguramos que la ruta es 'media/Videos/' y que tolera los espacios en los nombres
+        source.src = `media/Videos/${encodeURIComponent(exercise.videoFile)}`;
+        source.type = 'video/mp4';
+
+        // LA MAGIA ESTÁ AQUÍ: Si falla el origen local, salta a YouTube al instante
+        source.onerror = function() {
+            console.warn("No se encontró el archivo local o falló el formato. Cargando YouTube en su lugar...");
+            loadYouTube();
+        };
+
+        vid.appendChild(source);
+        videoContainer.appendChild(vid);
+        
+    } else {
+        // Si desde el principio no le hemos puesto .mp4, carga YouTube directamente
+        loadYouTube();
+    }
+
     const fallbackImg = categoryImages[exercise.category] || categoryImages.default;
     
     if(img1) {
-        img1.src = localImgPath;
-        img1.onerror = () => { img1.src = fallbackImg; };
+        // Solo intenta cargar el GIF local si el ejercicio tiene la propiedad fileName
+        if(exercise.fileName) {
+            const localImgPath = `media/Ejercicios/${exercise.fileName}`;
+            img1.src = localImgPath;
+            img1.onerror = () => { img1.src = fallbackImg; };
+        } else {
+            // A los nuevos que no tienen GIF les ponemos la estética de la categoría directamente
+            img1.src = fallbackImg;
+        }
     }
 
     variantsList.innerHTML = '';
@@ -440,8 +628,8 @@ function openModal(exercise) {
 }
 
 function closeModal() {
-    const iframe = document.getElementById('modalVideo');
-    iframe.src = '';
+    const videoContainer = document.getElementById('videoContainer');
+    videoContainer.innerHTML = ''; 
     modal.classList.add('hidden');
     document.body.classList.remove('overflow-hidden');
 }
@@ -464,26 +652,23 @@ function closeImageViewer() {
     }
 }
 
-// --- NUEVO: LÓGICA DEL SALVAPANTALLAS (IDLE MODE) ---
+// --- LÓGICA DEL SALVAPANTALLAS (IDLE MODE) ---
 let idleTimer;
-const IDLE_TIMEOUT = 3000; // 2 minutos (120000 ms). Cámbialo si quieres más tiempo.
+const IDLE_TIMEOUT = 300000; 
+
 const screensaver = document.getElementById('screensaver');
 
 function resetIdleTimer() {
-    // Si el salvapantallas está visible, ocultarlo suavemente
     if (screensaver && !screensaver.classList.contains('hidden')) {
         screensaver.style.opacity = '0';
         setTimeout(() => {
             screensaver.classList.add('hidden');
-        }, 500); // 500ms para que se desvanezca suavemente
+        }, 500); 
     }
     
-    // Limpiar el contador actual
     clearTimeout(idleTimer);
     
-    // Configurar nuevo contador
     idleTimer = setTimeout(() => {
-        // Cuando pasan los 2 minutos: cerrar modales abiertos y volver al inicio
         closeModal();
         closeImageViewer();
         if(searchInput.value !== '') {
@@ -492,20 +677,16 @@ function resetIdleTimer() {
             renderExercises();
         }
         
-        // Mostrar salvapantallas
         if (screensaver) {
             screensaver.classList.remove('hidden');
-            // Hack forzar el reflow para que la animación de opacidad funcione
             void screensaver.offsetWidth; 
             screensaver.style.opacity = '1';
         }
     }, IDLE_TIMEOUT);
 }
 
-// Escuchar cualquier tipo de interacción en la pantalla para resetear el tiempo
 ['touchstart', 'mousemove', 'keydown', 'scroll', 'click'].forEach(evt => {
     document.addEventListener(evt, resetIdleTimer, true);
 });
 
-// Arrancar el temporizador por primera vez
 resetIdleTimer();
