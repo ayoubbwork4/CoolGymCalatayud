@@ -8,9 +8,9 @@ const exerciseData = [
         name: "Press de Banca con Barra",
         category: "pecho",
         videoId: "rT7DgCr-3pg", 
+        videoFile: "press_banca.mp4", // Carpeta Drive: press banca
         fileName: "pressbancabarra.gif",
         variants: ["Press con Mancuernas", "Flexiones con Lastre"]
-        // (Sin videoFile porque no estaba en tu lista exacta, tirará de YouTube)
     },
     {
         id: "pecho_2",
@@ -22,7 +22,7 @@ const exerciseData = [
         variants: ["Press Inclinado Mancuernas"]
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName para que no busque GIF)
+        // NUEVO (Sin fileName para que no busque GIF)
         id: "pecho_2_alt",
         name: "Press Inclinado con Barra (Var)",
         category: "pecho",
@@ -35,6 +35,7 @@ const exerciseData = [
         name: "Aperturas (Mancuernas)",
         category: "pecho",
         videoId: "taI4XduLpTk",
+        videoFile: "apertura_mancuerna.mp4", // Carpeta Drive: apertura mancuerna
         fileName: "Apertura mancuernas.gif",
         variants: ["Aperturas en Máquina (Pec Deck)", "Cruce de Poleas"]
     },
@@ -51,6 +52,7 @@ const exerciseData = [
         name: "Flexiones (Push Ups)",
         category: "pecho",
         videoId: "IODxDxX7oi4",
+        videoFile: "flexiones.mp4", // Carpeta Drive: flexiones
         fileName: "pushup.gif",
         variants: ["Press Banca", "Flexiones Inclinadas"]
     },
@@ -59,6 +61,7 @@ const exerciseData = [
         name: "Cruce de Poleas",
         category: "pecho",
         videoId: "taI4XduLpTk", 
+        videoFile: "cruce_polea.mp4", // Carpeta Drive: cruce polea
         fileName: "cruce_poleas.gif",
         variants: ["Aperturas en Máquina", "Flexiones"]
     },
@@ -74,7 +77,7 @@ const exerciseData = [
         variants: ["Dominadas", "Jalón Supino"]
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "espalda_1_alt",
         name: "Jalón al Pecho Polea Alta",
         category: "espalda",
@@ -87,6 +90,7 @@ const exerciseData = [
         name: "Remo con Barra",
         category: "espalda",
         videoId: "G8l_8chR5BE",
+        videoFile: "remo_con_barra.mp4", // Carpeta Drive: remo con barra
         fileName: "RemoconBarra.gif", 
         variants: ["Remo Mancuerna", "Remo en Polea Baja"]
     },
@@ -100,7 +104,7 @@ const exerciseData = [
         variants: ["Jalón al Pecho", "Dominadas Asistidas"]
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "espalda_3_alt",
         name: "Dominada (Variante)",
         category: "espalda",
@@ -126,7 +130,7 @@ const exerciseData = [
         variants: ["Remo con Barra", "Remo Unilateral"]
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "espalda_6",
         name: "Extensión de Espalda",
         category: "espalda",
@@ -135,7 +139,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "espalda_7",
         name: "Extensiones de Espalda",
         category: "espalda",
@@ -144,7 +148,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "espalda_8",
         name: "Remo en Punta (Barra T)",
         category: "espalda",
@@ -167,6 +171,7 @@ const exerciseData = [
         name: "Prensa de Piernas",
         category: "piernas",
         videoId: "IZxyjW7MPJQ",
+        videoFile: "prensa.mp4", // Carpeta Drive: prensa
         variants: ["Sentadilla Hack", "Zancadas"]
     },
     {
@@ -190,6 +195,7 @@ const exerciseData = [
         name: "Zancadas (Lunges)",
         category: "piernas",
         videoId: "D7KaRcUTQeE",
+        videoFile: "zancada.mp4", // Carpeta Drive: zancada
         variants: ["Sentadilla Búlgara", "Step Up"]
     },
     {
@@ -201,7 +207,7 @@ const exerciseData = [
         variants: ["Puente de Glúteo", "Peso Muerto"]
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_7",
         name: "Abductores Sentado",
         category: "piernas",
@@ -210,7 +216,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_8",
         name: "Aductores",
         category: "piernas",
@@ -219,7 +225,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_9",
         name: "Glúteos",
         category: "piernas",
@@ -228,7 +234,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_10",
         name: "Patada de Glúteo en Máquina",
         category: "piernas",
@@ -237,7 +243,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_11",
         name: "Patada de Glúteo en Máquina 2",
         category: "piernas",
@@ -246,7 +252,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_12",
         name: "Patada",
         category: "piernas",
@@ -255,7 +261,7 @@ const exerciseData = [
         variants: []
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "pierna_13",
         name: "Péndulo de Glúteo",
         category: "piernas",
@@ -270,6 +276,7 @@ const exerciseData = [
         name: "Press Militar Barra",
         category: "hombros",
         videoId: "2yjwXTZQDDI",
+        videoFile: "press_militar_barra.mp4", // Carpeta Drive: press militar barra
         variants: ["Press Mancuernas", "Press Arnold"]
     },
     {
@@ -277,6 +284,7 @@ const exerciseData = [
         name: "Elevaciones Laterales",
         category: "hombros",
         videoId: "3VcKaXpzqRo",
+        videoFile: "elevaciones_laterales.mp4", // Carpeta Drive: elevaciones laterales
         variants: ["Remo al mentón", "Pájaro"]
     },
     {
@@ -284,6 +292,7 @@ const exerciseData = [
         name: "Pájaros (Posterior)",
         category: "hombros",
         videoId: "24z3h_bZ7Zo",
+        videoFile: "pájaro_hombro.mp4", // Corregido con tilde (pájaro_hombro.mp4)
         variants: ["Face Pull", "Peck Deck Inverso"]
     },
 
@@ -293,6 +302,7 @@ const exerciseData = [
         name: "Curl de Bíceps Barra",
         category: "brazos",
         videoId: "no-dXip-rJM",
+        videoFile: "curl_bíceps_barra.mp4", // Corregido con tilde (curl_bíceps_barra.mp4)
         variants: ["Curl Martillo", "Curl con Mancuerna"]
     },
     {
@@ -300,6 +310,7 @@ const exerciseData = [
         name: "Extensión Tríceps Polea",
         category: "brazos",
         videoId: "6kALZikXxLc",
+        videoFile: "tríceps_polea.mp4", // Corregido con tilde (tríceps_polea.mp4)
         variants: ["Press Francés", "Fondos en Banco"]
     },
     {
@@ -307,6 +318,7 @@ const exerciseData = [
         name: "Curl Martillo",
         category: "brazos",
         videoId: "zC3nLlEvin4",
+        videoFile: "curl_martillo.mp4", // Carpeta Drive: curl martillo
         variants: ["Curl Zottman", "Dominadas Supinas"]
     },
     {
@@ -314,6 +326,7 @@ const exerciseData = [
         name: "Press Francés",
         category: "brazos",
         videoId: "nRiJVZDpdL0",
+        videoFile: "press_frances.mp4", // Carpeta Drive: press frances
         variants: ["Patada de Tríceps", "Copeo"]
     },
 
@@ -339,6 +352,7 @@ const exerciseData = [
         name: "Elevación de Piernas",
         category: "core",
         videoId: "JB2oyawG9KI",
+        videoFile: "elevación_piernas.mp4", // Corregido con tilde (elevación_piernas.mp4)
         variants: ["Tijeras", "Montañeros"]
     },
 
@@ -365,7 +379,7 @@ const exerciseData = [
         variants: ["Assault Bike", "SkiErg"]
     },
     {
-        // ¡NUEVO CREADO DE TU LISTA! (Sin fileName)
+        // NUEVO (Sin fileName)
         id: "cardio_4",
         name: "Escaladora",
         category: "cardio",
@@ -542,7 +556,7 @@ function renderExercises(searchTerm = '') {
     });
 }
 
-// --- LÓGICA DEL MODAL CON YOUTUBE AUTOMÁTICO EN CASO DE FALLO ---
+// --- LÓGICA DEL MODAL (CON FALLBACK AUTOMÁTICO A YOUTUBE, NUBE Y SOPORTE DRIVE) ---
 function openModal(exercise) {
     const title = document.getElementById('modalTitle');
     const category = document.getElementById('modalCategory');
@@ -554,12 +568,12 @@ function openModal(exercise) {
 
     videoContainer.innerHTML = ''; 
 
-    // Función auxiliar para cargar YouTube automáticamente
+    // Función auxiliar que carga YouTube sin cookies si no hay MP4 o si el MP4 falla
     const loadYouTube = () => {
         if (exercise.videoId) {
             videoContainer.innerHTML = `
                 <iframe class="w-full h-full absolute inset-0" 
-                        src="https://www.youtube.com/embed/${exercise.videoId}?autoplay=1&mute=1&loop=1&playlist=${exercise.videoId}&controls=1&modestbranding=1&rel=0" 
+                        src="https://www.youtube-nocookie.com/embed/${exercise.videoId}?autoplay=1&mute=1&loop=1&playlist=${exercise.videoId}&controls=1&modestbranding=1&rel=0" 
                         title="Video Ejercicio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                 </iframe>
             `;
@@ -568,41 +582,57 @@ function openModal(exercise) {
         }
     };
     
+    // Si hay archivo local asignado, enlace directo a nube (.mp4) o enlace de Drive
     if (exercise.videoFile) {
-        // Creamos la estructura de vídeo de HTML5
-        const vid = document.createElement('video');
-        vid.className = "w-full h-full absolute inset-0 object-contain bg-black";
-        vid.controls = true;
-        vid.autoplay = true;
-        vid.loop = true;
-        vid.muted = true;
-        vid.playsInline = true;
+        if (exercise.videoFile.includes('drive.google.com')) {
+            // Enlace compartido de Google Drive (sin anuncios)
+            const drivePreviewUrl = exercise.videoFile.replace('/view?usp=sharing', '/preview').replace('/view', '/preview');
+            videoContainer.innerHTML = `
+                <iframe class="w-full h-full absolute inset-0" 
+                        src="${drivePreviewUrl}" 
+                        allow="autoplay" allowfullscreen>
+                </iframe>
+            `;
+        } else {
+            const vid = document.createElement('video');
+            vid.className = "w-full h-full absolute inset-0 object-contain bg-black";
+            vid.controls = true;
+            vid.autoplay = true;
+            vid.loop = true;
+            vid.muted = true;
+            vid.playsInline = true;
 
-        const source = document.createElement('source');
-        // Aseguramos que la ruta es 'media/Videos/' y que tolera los espacios en los nombres
-        source.src = `media/Videos/${encodeURIComponent(exercise.videoFile)}`;
-        source.type = 'video/mp4';
+            const source = document.createElement('source');
+            // Si empieza por http/https usa URL directa; si no, busca en media/Videos/
+            if (exercise.videoFile.startsWith('http://') || exercise.videoFile.startsWith('https://')) {
+                source.src = exercise.videoFile;
+            } else {
+                source.src = `media/Videos/${encodeURIComponent(exercise.videoFile)}`;
+            }
+            source.type = 'video/mp4';
 
-        // LA MAGIA ESTÁ AQUÍ: Si falla el origen local, salta a YouTube al instante
-        source.onerror = function() {
-            console.warn("No se encontró el archivo local o falló el formato. Cargando YouTube en su lugar...");
-            loadYouTube();
-        };
+            // Si falla el archivo local o de nube, salta a YouTube automáticamente
+            source.onerror = function() {
+                console.warn("Fallo al cargar el MP4. Saltando a YouTube automáticamente...");
+                loadYouTube();
+            };
 
-        vid.appendChild(source);
-        videoContainer.appendChild(vid);
+            vid.appendChild(source);
+            videoContainer.appendChild(vid);
+        }
         
     } else {
-        // Si desde el principio no le hemos puesto .mp4, carga YouTube directamente
+        // Si no hay archivo local registrado, carga YouTube directamente
         loadYouTube();
     }
 
+    const fileName = exercise.fileName ? exercise.fileName : `${exercise.name}.gif`;
+    const localImgPath = `media/Ejercicios/${fileName}`;
     const fallbackImg = categoryImages[exercise.category] || categoryImages.default;
     
     if(img1) {
         // Solo intenta cargar el GIF local si el ejercicio tiene la propiedad fileName
         if(exercise.fileName) {
-            const localImgPath = `media/Ejercicios/${exercise.fileName}`;
             img1.src = localImgPath;
             img1.onerror = () => { img1.src = fallbackImg; };
         } else {
@@ -654,9 +684,8 @@ function closeImageViewer() {
 
 // --- LÓGICA DEL SALVAPANTALLAS (IDLE MODE) ---
 let idleTimer;
+const IDLE_TIMEOUT = 300000; 
 
-
-const IDLE_TIMEOUT = 120000; // 2 minutos (120000 ms). Cámbialo si quieres más tiempo.
 const screensaver = document.getElementById('screensaver');
 
 function resetIdleTimer() {
